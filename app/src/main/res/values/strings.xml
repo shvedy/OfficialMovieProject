@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">OfficialMovieProject</string>
+    <string name="MOVIE_NAME">movie name</string>
+    <string name="URL">URL</string>
+    <string name="DESCRIPTION">Description..</string>
+    <string name="QUIT">Quit</string>
+    <string name="CLEAR_ALL">Clear All</string>
+    <string name="MANUAL">Manual</string>
+    <string name="ADD_WEB">Add From Web</string>
+    <string name="MovieName">Movie Name..</string>
+    <string name="DELET_MOVIE">Delete Movie.</string>
+    <string name="EDIT_MOVIE">Edit Movie.</string>
+    <string name="MORE">More...</string>
+    <string name="DETAILS">Details</string>
+</resources>
