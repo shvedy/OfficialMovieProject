@@ -53,15 +53,24 @@ public class internetScreen extends AppCompatActivity {
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String search = searchET.getText().toString();
+                search=search.trim();
+                if ( search.equals("")){
 
-                DownLoadStrings thread1 = new DownLoadStrings();
+                    Toast.makeText(internetScreen.this, "Enter Search", Toast.LENGTH_SHORT).show();
+                }
+                else {
 
-                try {
-                    String url = URLEncoder.encode(searchET.getText().toString(), "UTF-8");
-                    thread1.execute("http://www.omdbapi.com/?s=" + url);
 
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+                    DownLoadStrings thread1 = new DownLoadStrings();
+
+                    try {
+                        String url = URLEncoder.encode(searchET.getText().toString(), "UTF-8");
+                        thread1.execute("http://www.omdbapi.com/?s=" + url);
+
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -133,11 +142,19 @@ public class internetScreen extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
+
             if (s.equals("no internet")) {
                 dialog.dismiss();
-               Toast.makeText(internetScreen.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                Toast.makeText(internetScreen.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
 
             } else {
+                if (s.contains("Movie not found")) {
+
+
+                    dialog.dismiss();
+                    Toast.makeText(internetScreen.this, "Movie not found", Toast.LENGTH_SHORT).show();
+
+                }
                 try {
                     JSONObject mainObject = new JSONObject(s);
                     JSONArray Array = mainObject.getJSONArray("Search");
@@ -160,6 +177,7 @@ public class internetScreen extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
+
 
             super.onPostExecute(s);
 

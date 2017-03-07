@@ -67,8 +67,9 @@ public class editScreen extends AppCompatActivity implements View.OnClickListene
         movieUrlET.setText(intent.getStringExtra("url"));
 
         String imdbid = intent.getStringExtra("imdbid");
+
         DownLoadBody tread = new DownLoadBody();
-        tread.execute("http://www.omdbapi.com/?i=" + imdbid);
+        // tread.execute("http://www.omdbapi.com/?i=" + imdbid);
         urlBtn = (Button) findViewById(R.id.urlBtn);
         if (DBContants.Edit == true) {
             intent = getIntent();
@@ -80,7 +81,7 @@ public class editScreen extends AppCompatActivity implements View.OnClickListene
         if (DBContants.fromInternet == true) {
             url = movieUrlET.getText().toString();
             //urlBtn.setVisibility(View.INVISIBLE);
-
+            tread.execute("http://www.omdbapi.com/?i=" + imdbid);
             downloadPicture tread1 = new downloadPicture();
             tread1.execute(url);
         }
@@ -98,7 +99,7 @@ public class editScreen extends AppCompatActivity implements View.OnClickListene
                     movieName = movieNameET.getText().toString();
                     movieDescription = movieDescriptionET.getText().toString();
                     movieURL = movieUrlET.getText().toString();
-                    movieName=movieName.trim();
+                    movieName = movieName.trim();
 
                     if (movieName.equals("")) {
                         Toast.makeText(this, "Enter movie name ", Toast.LENGTH_SHORT).show();
@@ -118,7 +119,7 @@ public class editScreen extends AppCompatActivity implements View.OnClickListene
                     movieName = movieNameET.getText().toString();
                     movieDescription = movieDescriptionET.getText().toString();
                     movieURL = movieUrlET.getText().toString();
-                   movieName=movieName.trim();
+                    movieName = movieName.trim();
                     if (movieName.equals("")) {
                         Toast.makeText(this, "Enter movie name ", Toast.LENGTH_SHORT).show();
                     } else {
@@ -182,7 +183,7 @@ public class editScreen extends AppCompatActivity implements View.OnClickListene
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            if (respone.toString() == null) {
+            if (respone == null) {
                 Log.d("ngc", "bgc");
             }
 
